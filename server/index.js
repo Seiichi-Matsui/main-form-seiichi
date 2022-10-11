@@ -5,14 +5,10 @@ const contactRoutes = require('./routes/contact')
 const bodyParser = require('body-parser')
 const userRoutes = require('./routes/users')
 const path = require('path')
-// const FakeDb = require('./fake-db')
 
-mongoose.connect(config.DB_URI, {
-    }).then(
+mongoose.connect(config.DB_URI).then(
 
     () => {
-        // const fakeDb = new FakeDb()
-        // fakeDb.initDb()
     }
     
 )
@@ -22,6 +18,7 @@ app.use(bodyParser.json())
 
 app.use('/api/v1/contacts', contactRoutes)
 app.use('/api/v1/users', userRoutes)
+
 
 if(process.env.NODE_ENV === 'production') {
     const appPath = path.join( __dirname, '..', 'dist', 'main-form')
