@@ -24,7 +24,7 @@ app.use('/api/v1/contacts', contactRoutes)
 app.use('/api/v1/users', userRoutes)
 
 if(process.env.NODE_ENV === 'production') {
-    const appPath = path.join( __dirname, '..', 'dist', 'reservation-app')
+    const appPath = path.join( __dirname, '..', 'dist', 'main-form')
     app.use(express.static(appPath))
     app.get('*', function(req, res) {
         res.sendFile(path.resolve(appPath, 'index.html'))
