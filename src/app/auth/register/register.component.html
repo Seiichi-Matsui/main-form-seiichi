@@ -1,0 +1,88 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                <div class="card card-register">
+                    <h3 class="title">新規登録</h3>
+                    <form class="register-form" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                        <label>ユーザー名  </label>
+                        <div class="input-group form-group-no-border">
+                            <input
+                            ngModel
+                            name="username"
+                            type="text"
+                            class="form-control"
+                            placeholder="ユーザー名"
+                            required=""
+                            />
+                        </div>
+
+                        <label>Eメール</label>
+                        <div class="input-group form-group-no-border">
+                            <input
+                                ngModel
+                                name="email"
+                                type="email"
+                                class="form-control"
+                                placeholder="Eメール"
+                                required=""
+                                pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                            />
+                        </div>
+
+                        <label>パスワード</label>
+                        <div class="input-group form-group-no-border">
+                            <input
+                            ngModel
+                            name="password"
+                            type="password"
+                            class="form-control"
+                            placeholder="パスワード"
+                            minlength="6"
+                            required=""
+                        />
+                        </div>
+                        
+                        <label>パスワード（確認）</label>
+                        <div class="input-group form-group-no-border">
+                            <input
+                                ngModel
+                                name="confirmPassword"
+                                type="password"
+                                class="form-control"
+                                placeholder="パスワード（確認）"
+                                minlength="6"
+                                required=""
+                            />
+                        </div>
+
+                        <div class="row">
+                            <label>権限選択</label>
+                            <div class="row">
+                                <label class="col">
+                                    <input ngModel type="radio" name="authority" value="一般">
+                                    一般
+                                </label>
+                            </div>
+                            <div class="row">
+                                <label class="col">
+                                    <input ngModel type="radio" name="authority" value="管理者">
+                                    管理者
+                                </label>
+                            </div>
+                        </div>
+
+                        <button [disabled]="!registerForm.valid" class="btn btn-danger btn-block btn-round" type="submit">登録</button>
+                    </form>
+                    <br>
+                    <div *ngIf="errors && errors.length>0" class="alert alert-danger">
+                        <p *ngFor="let error of errors">{{ error.detail }}</p>
+                    </div>
+                    <div class="forgot">
+                        <a [routerLink]="['']" class="btn btn-link btn-danger">ログインはこちら</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

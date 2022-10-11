@@ -1,0 +1,134 @@
+const express = require('express')
+const router = express.Router()
+const User = require('../model/user')
+const jwt = require('jsonwebtoken')
+const config = require('../config/')
+
+router.get('', function(req, res) {
+    User.find({}, function(err, foundUser) {
+        res.json(foundUser)
+    })
+})
+
+router.get('/:userId', function(req, res) {
+    const userId = req.params.userId
+    User.findById(userId, function(err, foundUser) {
+        res.json(foundUser)
+    })
+})
+
+router.post('/login', function(req, res) {
+    const { email, password } = req.body
+    if(!email) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please fill email!'}]})
+    }
+
+    if(!password) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please fill password!'}]})
+    }
+
+    User.findOne({email}, function(err, foundUser) {
+        if(err) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'Someting went wrong!'}]})
+        }
+        if(!foundUser) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'User is not exist!'}]})
+        }
+        if(!foundUser.hasSamePassword(password)) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'Incorrect password!'}]})
+        }
+
+        const token = jwt.sign({
+            userId: foundUser.id,
+            username: foundUser.username,
+            authority: foundUser.authority
+          }, config.SECRET, { expiresIn: '1h' });
+
+        return res.json(token)
+    })
+
+})
+
+router.post('/register', function(req, res) {
+    const{ username, email, password, confirmPassword, authority } = req.body
+    const managedCases = '0'
+
+    // 下を一行で書くと上になる
+    // const username = req.body.username
+    // const email = req.body.email
+    // const password = req.body.password
+    // const confirmPassword = req.body.confirmPassword
+
+    if(!username) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please fill username!'}]})
+    }
+
+    if(!email) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please fill email!'}]})
+    }
+
+    if(!password) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please fill password!'}]})
+    }
+
+    if(password !== confirmPassword) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please check password!'}]})
+    }
+
+    if(!authority) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please fill authority!'}]})
+    }
+    
+
+
+    User.findOne({email}, function(err, foundUser) {
+        if(err) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'Someting went wrong!'}]})
+        }
+        if(foundUser) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'User alredy exist!'}]})
+        }
+
+        const user = new User({username, email, password, authority, managedCases})
+        user.save(function(err) {
+            if(err) {
+                return res.status(422).send({errors: [{title: 'User error', detail: 'went wrong!'}]})
+            }
+            return res.json(user)
+        })
+    })
+})
+
+
+router.delete("/:userId", async (req,res) => {
+    try {
+        await User.findByIdAndRemove(req.params.userId);
+    } catch(err) {
+        res.status(500).send(err)
+    }
+    return res.json({delete: true})
+})
+
+router.patch('/update', function(req, res) {
+    const { _id, managedCases } = req.body
+
+    User.findById(_id, function(err, foundUser) {
+        if(err) {
+            return res.status(422).send({errors: [{title: 'Id error', detail: "IDが見つかりません "}]})
+        }
+
+    foundUser.managedCases = managedCases
+
+    const user = new User(foundUser)
+
+        user.save(function(err) {
+            if(err) {
+                return res.status(422).send({errors: [{title: 'User error', detail: "エラーが発生しました。お手数ですが再度ご入力をお願いします。"}]})
+            }
+            return res.json(user)
+        })
+    })
+})
+
+
+module.exports = router
