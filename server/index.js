@@ -30,7 +30,6 @@ if(process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(appPath, 'index.html'))
 })
 }
-
 const PORT = process.env.PORT  || '3001'
 
 app.listen(PORT, function() {
