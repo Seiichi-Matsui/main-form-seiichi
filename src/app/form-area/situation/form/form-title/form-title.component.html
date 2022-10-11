@@ -1,0 +1,56 @@
+<ul class="container row align-items-start">
+    <li class="col-2 nav-link active">
+    フォーム名
+    </li>
+    <li class="col-3 nav-link active">
+    問い合わせ内容
+    </li>
+    <li class="col nav-link active">
+        <select name="manager" (change)="status($event)" class="form-control">
+            <option>状況</option>
+                <option
+                    *ngFor="let status of statuses"
+                    [value]="status"
+                >
+                    {{ status }}
+                </option>
+        </select>
+    </li>
+    <li class="col nav-link active">
+        <select name="manager" (change)="priority($event)" class="form-control">
+            <option>優先度</option>
+                <option
+                    *ngFor="let priority of priorities"
+                    [value]="priority"
+                >
+                    {{ priority }}
+                </option>
+        </select>
+    </li>
+    <li class="col nav-link active">
+        <select name="manager" (change)="desiredContact($event)" class="form-control">
+            <option>連絡方法</option>
+                <option
+                    *ngFor="let desiredContact of desiredContacts"
+                    [value]="desiredContact"
+                >
+                    {{ desiredContact }}
+                </option>
+        </select>
+    </li>
+    <li class="col-1 nav-link active">
+    受付
+    </li>
+    <li class="col nav-link active">
+        <select name="manager" (change)="managerChange($event)" class="form-control">
+            <option>担当者</option>
+                <option
+                    *ngFor="let user of users"
+                    [value]="user.username"
+                >
+                    {{ user.username }}
+                </option>
+        </select>
+    </li>
+    <hr>
+</ul>
