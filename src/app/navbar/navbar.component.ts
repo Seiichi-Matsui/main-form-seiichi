@@ -7,13 +7,15 @@ import { AuthService } from '../auth/shared/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  meta:any =  localStorage.getItem('app-meta')
-  username = JSON.parse(this.meta).username
-
+  meta:any = ''
+  username:any = ''
+  auth:any = this.authService
   constructor(
-    public auth: AuthService) { }
-
+    private authService: AuthService
+  ){}
   ngOnInit(): void {
+    this.meta =  localStorage.getItem('app-meta')
+    this.username = JSON.parse(this.meta).username
   }
 
 

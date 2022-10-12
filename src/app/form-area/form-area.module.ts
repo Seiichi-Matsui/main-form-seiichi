@@ -14,6 +14,7 @@ import { FormListComponent } from './situation/form/form-list/form-list.componen
 import { FormsModule } from '@angular/forms';
 import { PagesComponent } from './pages/pages.component';
 import { MemberComponent } from './pages/member/member.component';
+import { CntactService } from '../common/form-service';
 
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
     FormsModule
   ],
   providers: [
+    CntactService
   ],
 })
 export class FormAreaModule { }

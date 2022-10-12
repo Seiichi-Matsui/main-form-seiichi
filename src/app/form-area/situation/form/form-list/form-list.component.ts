@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/shared/auth.service';
+import { AuthService } from '../../../../auth/shared/auth.service';
 import { CntactService } from "../../../../common/form-service";
-
 @Component({
   selector: 'app-form-list',
   templateUrl: './form-list.component.html',

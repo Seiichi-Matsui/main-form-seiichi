@@ -5,25 +5,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CntactService } from './common/form-service';
 import { FormAreaModule } from './form-area/form-area.module';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormAreaModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
 
   ],
   providers: [
-    CntactService,
   ],
   bootstrap: [AppComponent]
 })
