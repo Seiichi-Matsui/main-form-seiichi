@@ -13,7 +13,7 @@ import { SituationListComponent } from './situation/situation-list/situation-lis
 import { FormListComponent } from './situation/form/form-list/form-list.component';
 import { FormsModule } from '@angular/forms';
 import { PagesComponent } from './pages/pages.component';
-import { MemberComponent } from './pages/member/member.component';
+import { MemberComponent } from './form-page/member/member.component';
 import { CntactService } from '../common/form-service';
 
 
@@ -29,6 +29,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    SituationListComponent,
     FormAreaComponent,
     FormPageComponent,
     SituationComponent,
@@ -37,7 +38,6 @@ const routes: Routes = [
     FormNavComponent,
     FormSettingComponent,
     FormComponent,
-    SituationListComponent,
     FormListComponent,
     PagesComponent,
     MemberComponent,
