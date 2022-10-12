@@ -11,7 +11,7 @@ export class FormTitleComponent implements OnInit {
   statuses:any =["対応中","保留中","解決済み"]
   priorities:any = ["低","中","高","緊急"]
   desiredContacts:any = ["電話","メール"]
-  users:any
+  users:any = this.formlistComponent.users
   constructor(
     private formlistComponent: FormListComponent
     ) { }
