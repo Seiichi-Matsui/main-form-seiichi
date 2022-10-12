@@ -6,12 +6,12 @@ const bodyParser = require('body-parser')
 const userRoutes = require('./routes/users')
 const path = require('path')
 
-mongoose.connect(config.DB_URI).then(
+mongoose.connect(config.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(
 
     () => {
-        if(process.env.NODE_ENV !== 'production') {
-            console.log("プロダクション");
-        }
     }
     
 )
