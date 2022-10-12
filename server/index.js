@@ -21,10 +21,12 @@ app.use('/api/v1/users', userRoutes)
 
 
 if(process.env.NODE_ENV === 'production') {
+    console.log('プロダクション');
     const appPath = path.join( __dirname, '..', 'dist', 'main-form')
     app.use(express.static(appPath))
     app.get('*', function(req, res) {
         res.sendFile(path.resolve(appPath, 'index.html'))
+
 })
 }
 const PORT = process.env.PORT  || '3001'
