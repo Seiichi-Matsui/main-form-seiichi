@@ -21,9 +21,10 @@ const routes: Routes = [
   { path: 'form', component: FormAreaComponent,
     children: [
       { path: 'situation', component: SituationComponent },
-      { path: ':contactId', component: FormPageComponent},
+      { path: ':contactId', component: FormPageComponent}
     ]
   },
+
   { path: 'member', component: MemberComponent }
 ]
 
