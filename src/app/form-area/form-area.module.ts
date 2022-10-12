@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { SituationListComponent } from './situation/situation-list/situation-list.component';
 import { SituationComponent } from './situation/situation.component';
 import { FormPageComponent } from './form-page/form-page.component';
 import { FormAreaComponent } from './form-area.component';
@@ -9,11 +10,10 @@ import { FormMainComponent } from './form-page/form-main/form-main.component';
 import { FormNavComponent } from './form-page/form-nav/form-nav.component';
 import { FormSettingComponent } from './form-page/form-setting/form-setting.component';
 import { FormComponent } from './situation/form/form.component';
-import { SituationListComponent } from './situation/situation-list/situation-list.component';
 import { FormListComponent } from './situation/form/form-list/form-list.component';
 import { FormsModule } from '@angular/forms';
 import { PagesComponent } from './pages/pages.component';
-import { MemberComponent } from './pages/member/member.component';
+import { MemberComponent } from './form-page/member/member.component';
 import { CntactService } from '../common/form-service';
 
 
@@ -22,13 +22,14 @@ const routes: Routes = [
     children: [
       { path: 'situation', component: SituationComponent },
       { path: ':contactId', component: FormPageComponent},
-    ]
+    ],
   },
-  { path: 'member', component: PagesComponent }
-]
+  { path: 'member', component: MemberComponent }
+];
 
 @NgModule({
   declarations: [
+    SituationListComponent,
     FormAreaComponent,
     FormPageComponent,
     SituationComponent,
@@ -37,7 +38,6 @@ const routes: Routes = [
     FormNavComponent,
     FormSettingComponent,
     FormComponent,
-    SituationListComponent,
     FormListComponent,
     PagesComponent,
     MemberComponent,
