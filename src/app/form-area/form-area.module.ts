@@ -24,9 +24,8 @@ const routes: Routes = [
       { path: ':contactId', component: FormPageComponent}
     ]
   },
-
   { path: 'member', component: MemberComponent }
-]
+];
 
 @NgModule({
   declarations: [
