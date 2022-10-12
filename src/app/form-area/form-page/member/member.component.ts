@@ -1,13 +1,14 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/shared/auth.service';
-import { CntactService } from 'src/app/common/form-service';
+import { HttpErrorResponse } from '@angular/common/http'
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from '../../../auth/shared/auth.service'
+import { CntactService } from '../../../common/form-service'
 
 @Component({
   selector: 'app-member',
   templateUrl: './member.component.html',
   styleUrls: ['./member.component.scss']
 })
+
 export class MemberComponent implements OnInit {
   meta:any =  localStorage.getItem('app-meta')
   users:any
