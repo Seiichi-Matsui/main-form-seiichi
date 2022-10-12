@@ -1,11 +1,18 @@
-<label class="col-5">メンバー名</label>
-<label class="col-2">区分</label>
-<label class="col-2">担当件数</label>
-<div class="mt-3" *ngFor="let user of users">
-    <label class="col-5">{{user.username}}</label>
-    <label class="col-2">{{user.authority}}</label>
-    <label class="col-2">{{user.managedCases}}</label>
-    <ng-container *ngIf="authority">
-        <button type="button" (click)="clear(user._id)" class="col-1">削除</button>
-    </ng-container>
+<div class="row">
+    <div class="col-2">
+        <app-pages></app-pages>
+    </div>
+    <div class="col-8">
+        <label class="col-5">メンバー名</label>
+        <label class="col-2">区分</label>
+        <label class="col-2">担当件数</label>
+        <div class="mt-3" *ngFor="let user of users">
+            <label class="col-5">{{user.username}}</label>
+            <label class="col-2">{{user.authority}}</label>
+            <label class="col-2">{{user.managedCases}}</label>
+            <ng-container *ngIf="authority">
+                <button type="button" (click)="clear(user._id)" class="col-1">削除</button>
+            </ng-container>
+        </div>
+    </div>
 </div>

@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { PagesComponent } from './pages/pages.component';
 import { MemberComponent } from './form-page/member/member.component';
 import { CntactService } from '../common/form-service';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 const routes: Routes = [
@@ -40,10 +41,11 @@ const routes: Routes = [
     FormComponent,
     FormListComponent,
     PagesComponent,
-    MemberComponent,
+    MemberComponent
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     RouterModule.forChild(routes),
     FormsModule
   ],
