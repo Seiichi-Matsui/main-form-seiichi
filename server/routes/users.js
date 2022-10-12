@@ -53,12 +53,6 @@ router.post('/register', function(req, res) {
     const{ username, email, password, confirmPassword, authority } = req.body
     const managedCases = '0'
 
-    // 下を一行で書くと上になる
-    // const username = req.body.username
-    // const email = req.body.email
-    // const password = req.body.password
-    // const confirmPassword = req.body.confirmPassword
-
     if(!username) {
         return res.status(422).send({errors: [{title: 'User error', detail: 'please fill username!'}]})
     }

@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: ':contactId', component: FormPageComponent},
     ]
   },
-  { path: 'member', component: MemberComponent }
+  { path: 'member', component: PagesComponent }
 ]
 
 @NgModule({

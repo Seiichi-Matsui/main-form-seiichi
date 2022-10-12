@@ -71,46 +71,6 @@ export class MemberComponent implements OnInit {
         }
     )
   }
-  // mcChange(users:any) {
-  //   const mcChange = users.filter(users => dog.type === 'pomeranian');
-    
-  //   const mcChange = this.contacts.reduce((result:any, current:any) => {
-  //     const element = result.find((p:any) => p.manager === current.manager);
-  //     if (element) {
-  //       element.managedCases ++
-  //     } else {
-  //       result.push({
-  //         manager: current.manager,
-  //         managedCases: 1,
-  //       });
-  //     }
-  //     return result;
-  //     }, []);
-      
-  //     mcChange.forEach(function (cValue:any) {
-
-  //     const targetUser = users.find((v:any) => v.username === cValue.manager)
-  //     targetUser.push
-
-  //     })
-  // }
-
-  
-  // changeManagedCases(targetUser:any) {
-  //   this.updateUser = {
-  //     _id: findUser._id,
-  //     managedCases: targetUser["managedCases"],
-  //   }
-
-  //   this.authService.update(this.updateUser).subscribe(
-  //     (date) => {
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       console.error(err)
-  //   })
-  // }
-
-  // }
   
     
     
