@@ -1,6 +1,6 @@
 const express = require('express')
-const mongoose = require('mongoose');
-const config = require('./config');
+const mongoose = require('mongoose')
+const config = require('./config')
 const contactRoutes = require('./routes/contact')
 const bodyParser = require('body-parser')
 const userRoutes = require('./routes/users')
@@ -32,5 +32,5 @@ if(process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT  || '3001'
 
 app.listen(PORT, function() {
-    console.log('起動完了');
+    console.log('起動完了')
 })
