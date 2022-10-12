@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/shared/auth.service';
 import { FormListComponent } from "../form-list/form-list.component";
 
 @Component({
@@ -14,7 +13,6 @@ export class FormTitleComponent implements OnInit {
   desiredContacts:any = ["電話","メール"]
   users:any
   constructor(
-    private authService: AuthService,
     private formlistComponent: FormListComponent
     ) { }
 

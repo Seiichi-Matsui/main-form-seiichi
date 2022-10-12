@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CntactService } from 'src/app/common/form-service';
+import { CntactService } from '../../common/form-service';
 
 @Component({
   selector: 'app-form-page',
