@@ -17,7 +17,7 @@ router.get('/:contactId', function(req, res) {
 
 
 router.post('/add', function(req, res) {
-    const { lastName, firstName, lastNamePseudonym, firstNamePseudonym, postCode, address, buildingName, phoneNumber, phoneType, emailFirst, emailLast, desiredContact, status, priority, manager, contactForm, date } = req.body
+    const { lastName, firstName, lastNamePseudonym, firstNamePseudonym, postCode, address, buildingName, phoneNumber, phoneType, emailFirst, emailLast, desiredContact, status, priority, manager, contactForm, date, opend } = req.body
 
     if(!lastName) {
         return res.status(422).send({errors: [{title: 'User error', detail: "お名前を入力してください。"}]})
@@ -67,7 +67,7 @@ router.post('/add', function(req, res) {
         return res.status(422).send({errors: [{title: 'User error', detail: "お問合せ内容を入力してください。"}]})
     }
 
-    const contact = new Contact({lastName, firstName, lastNamePseudonym, firstNamePseudonym, postCode, address, buildingName, phoneNumber, phoneType, emailFirst, emailLast, desiredContact, status, priority, manager, contactForm, date })
+    const contact = new Contact({lastName, firstName, lastNamePseudonym, firstNamePseudonym, postCode, address, buildingName, phoneNumber, phoneType, emailFirst, emailLast, desiredContact, status, priority, manager, contactForm, date, opend })
         contact.save(function(err) {
             if(err) {
                 return res.status(422).send({errors: [{title: 'User error', detail: "エラーが発生しました。お手数ですが再度ご入力をお願いします。"}]})
@@ -78,7 +78,7 @@ router.post('/add', function(req, res) {
 
 
 router.patch('/change', function(req, res) {
-    const { _id, status, priority, manager } = req.body
+    const { _id, status, priority, manager, opened } = req.body
 
     Contact.findById(_id, function(err, foundContact) {
         if(err) {
@@ -88,7 +88,7 @@ router.patch('/change', function(req, res) {
     foundContact.status = status
     foundContact.priority = priority
     foundContact.manager = manager
-
+    foundContact.opened = opened
     const contact = new Contact(foundContact)
 
         contact.save(function(err) {
@@ -99,5 +99,6 @@ router.patch('/change', function(req, res) {
         })
     })
 })
+
 
 module.exports = router

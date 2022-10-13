@@ -22,4 +22,5 @@ export class CntactService {
             return this.http.patch('/api/v1/contacts/change/', contact)
     }
 
+
 }

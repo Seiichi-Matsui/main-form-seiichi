@@ -1,7 +1,8 @@
-<ul class="row" *ngFor="let contact of contacts">
-    <li class="row nav-link active">
-        <label>{{ contact.title }}</label>
-        <p>{{ contact.value }}</p>
-    </li>
-
-</ul>
+<div class="bgColor pt-3">
+    <ul class="row" *ngFor="let contact of contacts">
+        <li class="row nav-link active">
+            <label class="font-large">{{ contact.title }}</label>
+            <p class="font-midium">{{ contact.value }}</p>
+        </li>
+    </ul>
+</div>

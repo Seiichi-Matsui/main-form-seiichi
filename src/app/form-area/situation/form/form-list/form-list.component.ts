@@ -12,10 +12,14 @@ desiredContacts:any = ["電話","メール"]
 users:any
 contacts: any
 findContacts:any
-baseContacts:any
-
+setting:any = {
+  status: '状況',
+  priority: '優先度',
+  desiredContact: '連絡方法',
+  manager: '担当者'
+}
   constructor(
-    private cntactService: CntactService,
+    private cotactService: CntactService,
     private authService: AuthService
     ) { 
       const usersObservable = this.authService.getUsers()
@@ -25,7 +29,6 @@ baseContacts:any
       },
         (err) => { console.log('次のエラーが発生しました!:' + err) }
       )
-
       this.date()
     }
 
@@ -34,11 +37,10 @@ baseContacts:any
 
   date() {
     
-    const contactsObservable = this.cntactService.getContacts()
+    const contactsObservable = this.cotactService.getContacts()
     contactsObservable.subscribe(
       (date) => {
       this.contacts = date
-      this.baseContacts = date
       
     },
       (err) => { console.log('次のエラーが発生しました!:' + err) }
@@ -46,34 +48,85 @@ baseContacts:any
   }
 
   statusFilter(value:any) {
-    // this.date()
+    this.date()
+    this.setting.status = value
     setTimeout(() => {
-      this.update(value)
+      this.update()
     }, 500);
-    // new Promise((resolve, reject)=>{
-    //   resolve();
-    // }).then(()=> 
-    // )
-    
-      
   }
 
-  update(value:any) {
+  priorityFilter(value:any) {
+    this.date()
+    this.setting.priority = value
     
-    this.findContacts = this.contacts.filter((contact:any) =>
-    value === contact.status || 
-    value  === contact.priority ||
-    value === contact.desiredContact ||
-    value === contact.manager
-    )
+    setTimeout(() => {
+      this.update()
+    }, 500);
+  }
 
-    if(!this.findContacts.length && value === "状況" || value === "優先度" || value === "連絡方法" || value === "担当者"){
+  desiredContactFilter(value:any) {
+    this.date()
+    this.setting.desiredContact = value
+    setTimeout(() => {
+      this.update()
+    }, 500);
+  }
+
+  managerChangeFilter(value:any) {
+    this.date()
+    this.setting.manager = value
+    setTimeout(() => {
+      this.update()
+    }, 500);
+  }
+
+  update() {
+
+    this.findContacts = this.contacts
+    if(this.setting.status !== "状況") {
+      this.findContacts = this.findContacts.filter((contact:any) =>
+      this.setting.status === contact.status
+      )
+    }
+    
+    if(this.setting.priority  !== "優先度") {
+      this.findContacts = this.findContacts.filter((contact:any) =>
+      this.setting.priority === contact.priority
+      )
+    }
+    if(this.setting.desiredContact !== "連絡方法") {
+      this.findContacts = this.findContacts.filter((contact:any) =>
+      this.setting.desiredContact === contact.desiredContact
+      )
+    }
+    if(this.setting.manager !== "担当者") {
+      this.findContacts = this.findContacts.filter((contact:any) =>
+      this.setting.manager === contact.manager
+      )
+    }
+    
+    
+    if(!this.findContacts.length) {
+      if (this.setting.status === "状況"){
         this.findContacts = this.contacts.filter((contact:any) => 
-        value !== contact.status || 
-        value !== contact.priority ||
-        value !== contact.desiredContact ||
-        value !== contact.manager
-        )
+        this.setting.status !== contact.status
+
+      )}
+      if (this.setting.priority === "優先度"){
+        this.findContacts = this.contacts.filter((contact:any) => 
+        this.setting.priority !== contact.priority
+
+      )}
+      if (this.setting.desiredContact === "連絡方法"){
+        this.findContacts = this.contacts.filter((contact:any) => 
+        this.setting.desiredContact !== contact.desiredContact
+
+      )}
+      if (this.setting.manager === "担当者"){
+        this.findContacts = this.contacts.filter((contact:any) => 
+        this.setting.manager !== contact.manager
+      )}
+      
     this.date()
 
     }else {
@@ -88,7 +141,6 @@ baseContacts:any
     this.statusFilter(status)
     } else {
     const value = "状況"
-    
       this.statusFilter(value)
       
     }
@@ -97,30 +149,30 @@ baseContacts:any
   priority(e: any) {
     if(e.target.value !== "優先度"){
     const status = e.target.value
-    this.statusFilter(status)
+    this.priorityFilter(status)
     } else {
       const value = "優先度"
-        this.statusFilter(value)
+        this.priorityFilter(value)
     }
   }
 
   desiredContact(e: any) {
     if(e.target.value !== "連絡方法"){
     const status = e.target.value
-    this.statusFilter(status)
+    this.desiredContactFilter(status)
     } else {
       const value = "連絡方法"
-        this.statusFilter(value)
+        this.desiredContactFilter(value)
     }
     }
 
   managerChange(e: any) {
     if(e.target.value !== "担当者"){
     const status = e.target.value
-    this.statusFilter(status)
+    this.managerChangeFilter(status)
     } else {
       const value = "担当者"
-        this.statusFilter(value)
+        this.managerChangeFilter(value)
     }
     }
 }

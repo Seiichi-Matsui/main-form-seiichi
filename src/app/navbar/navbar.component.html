@@ -1,26 +1,26 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">たより</a>
         <ul class="nav justify-content-end">
             <ng-container *ngIf="auth.isAuthenticated()">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton1" role="button" data-toggle="dropdown" aria-expanded="false">
+                <li class="navbar-brand nav-item dropdown" style="margin-right: 30px;">
+                    <a class="navbar-brand dropdown-toggle" href="#" id="dropdownMenuButton1" role="button" data-toggle="dropdown" aria-expanded="false">
                     {{ username }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">アカウント管理</a></li>
-                        <li><a class="dropdown-item" href="#">ログアウト</a></li>
+                        <li><a class="nav-link dropdown-item" style="color: black;" href="#">アカウント管理</a></li>
+                        <li><a class="nav-link dropdown-item" style="color: black;" href="#">ログアウト</a></li>
                     </ul>
                 </li>
             </ng-container>
             <ng-container *ngIf="!auth.isAuthenticated()">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" role="button" data-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown" style="margin-right: 30px;">
+                    <a class="navbar-brand dropdown-toggle" href="#" id="dropdownMenuButton2" role="button" data-toggle="dropdown" aria-expanded="false">
                     アカウント
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        <li><a class="dropdown-item" [routerLink]="['']">ログイン</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/register']">新規登録</a></li>
+                        <li><a class="nav-link dropdown-item" style="color: black;" [routerLink]="['']">ログイン</a></li>
+                        <li><a class="nav-link dropdown-item" style="color: black;" [routerLink]="['/register']">新規登録</a></li>
                     </ul>
                 </li>
             </ng-container>

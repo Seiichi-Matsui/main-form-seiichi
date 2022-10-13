@@ -1,49 +1,51 @@
-<div class="row nav-item dropdown">
-    <label>担当者</label>
-    <label>{{ contact.manager }}</label>
-    <select name="manager" (change)="managerChange($event)" class="form-control">
-        <option>変更する</option>
-        <ng-container *ngIf="authority">
-            <option
-                *ngFor="let user of users"
-                [value]="user.username"
-            >
-                {{ user.username }}
-            </option>
-        </ng-container>
-        <ng-container *ngIf="!authority">
-            <option
-                [value]="user.username"
-            >
-                {{ user.username }}
-            </option>
-        </ng-container>
-    </select>
-    <hr>
-</div>
+<div class="bgColor container">
+    <div class="row nav-item dropdown pt-3">
+        <label class="font-large">担当者</label>
+        <label class="font-midium">{{ contact.manager }}</label>
+        <select name="manager" (change)="managerChange($event)" class="font-midium form-control bg">
+            <option class="font-midium">変更する</option>
+            <ng-container *ngIf="authority">
+                <option
+                    *ngFor="let user of users"
+                    [value]="user.username"
+                >
+                    {{ user.username }}
+                </option>
+            </ng-container>
+            <ng-container *ngIf="!authority">
+                <option
+                    [value]="user.username"
+                >
+                    {{ user.username }}
+                </option>
+            </ng-container>
+        </select>
+        <hr>
+    </div>
 
-<div class="row nav-item dropdown">
-    <label>状況</label>
-    <label>{{ contact.status }}</label>
-    <select name="status" (change)="statusChange($event)" class="form-control">
-        <option>変更する</option>
-        <option
-            *ngFor="let status of statuses"
-            [value]="status"
-            >{{ status }}</option>
-    </select>
-    <hr>
-</div>
+    <div class="row nav-item dropdown">
+        <label class="font-large">状況</label>
+        <label class="font-midium">{{ contact.status }}</label>
+        <select name="status" (change)="statusChange($event)" class="font-midium form-control bg">
+            <option>変更する</option>
+            <option
+                *ngFor="let status of statuses"
+                [value]="status"
+                >{{ status }}</option>
+        </select>
+        <hr>
+    </div>
 
-<div class="row nav-item dropdown">
-    <label>優先度</label>
-    <label>{{ contact.priority }}</label>
-    <select name="priority" (change)="priorityChange($event)" class="form-control">
-        <option>変更する</option>
-        <option
-            *ngFor="let priority of priorities"
-            [value]="priority"
-            >{{ priority }}</option>
-    </select>
-    <hr>
+    <div class="row nav-item dropdown">
+        <label class="font-large">優先度</label>
+        <label class="font-midium">{{ contact.priority }}</label>
+        <select name="priority" (change)="priorityChange($event)" class="font-midium form-control bg">
+            <option>変更する</option>
+            <option
+                *ngFor="let priority of priorities"
+                [value]="priority"
+                >{{ priority }}</option>
+        </select>
+        <hr>
+    </div>
 </div>

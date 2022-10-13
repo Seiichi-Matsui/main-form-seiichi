@@ -6,7 +6,7 @@ import { CntactService } from '../../../common/form-service'
 @Component({
   selector: 'app-member',
   templateUrl: './member.component.html',
-  styleUrls: ['./member.component.scss']
+  styleUrls: ['./member.component.css']
 })
 
 export class MemberComponent implements OnInit {
@@ -18,20 +18,28 @@ export class MemberComponent implements OnInit {
   changeUser:any
   updateUser:any
   targetUser:any
+  counter:any
 
   constructor(
     private authService: AuthService,
     private contactService: CntactService
-  ) { }
-
-  ngOnInit(): void {
-
+  ) { 
     if(this.user.authority === "管理者"){
       this.authority = true
     } else {
       this.authority = false
     }
+    this.date()
+    setTimeout(() => {
+    this.count()
+    }, 500)
+  }
 
+  ngOnInit(): void {
+
+  }
+
+  date() {
     const contactsObservable = this.contactService.getContacts()
     contactsObservable.subscribe(
       (date) => {
@@ -47,11 +55,26 @@ export class MemberComponent implements OnInit {
       )
     },
       (err) => { console.log('次のエラーが発生しました!:' + err) }
-    )
+    )}
 
-    
-
+  count() {
+    this.counter = this.contacts.reduce(function (result:any, current:any) {
+      const element = result.find(function (p:any) {
+        return p.manager === current.manager
+      });
+      if (element) {
+        element.count ++
+      } else {
+        result.push({
+          manager: current.manager,
+          count: 1,
+        });
+      }
+      return result;
+    }, []);
   }
+
+  
 
   clear(e: any){
     return this.authService.clear(e).subscribe(
