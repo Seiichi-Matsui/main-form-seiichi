@@ -21,39 +21,52 @@ export class FormSettingComponent implements OnInit {
   formSetting:any
   contact:any
   contacts:any
-  
 
   constructor (
     private formPageComponent: FormPageComponent,
     private authService: AuthService,
-    private contactService: CntactService
-    ) {}
+    private contactService: CntactService,
+    ) {
+      if(this.user.authority === "管理者"){
+        this.authority = true
+      } else {
+        this.authority = false
+      }
+  
+      const contactsObservable = this.contactService.getContacts()
+      contactsObservable.subscribe(
+        (date) => {
+        this.contacts = date
+      },
+        (err) => { console.log('次のエラーが発生しました!:' + err) }
+      )
+  
+      const usersObservable = this.authService.getUsers()
+      usersObservable.subscribe(
+        (date) => {
+          this.users = date
+      },
+        (err) => { console.log('次のエラーが発生しました!:' + err) }
+      )
+      this.contact = this.formPageComponent.contact
+      this.opend()
+    }
 
 
   ngOnInit(): void {
-    if(this.user.authority === "管理者"){
-      this.authority = true
-    } else {
-      this.authority = false
-    }
-
-    const contactsObservable = this.contactService.getContacts()
-    contactsObservable.subscribe(
-      (date) => {
-      this.contacts = date
-    },
-      (err) => { console.log('次のエラーが発生しました!:' + err) }
-    )
-
-    const usersObservable = this.authService.getUsers()
-    usersObservable.subscribe(
-      (date) => {
-        this.users = date
-    },
-      (err) => { console.log('次のエラーが発生しました!:' + err) }
-    )
-    this.contact = this.formPageComponent.contact
   }
+
+
+  opend() {
+  this.formSetting = {
+    _id: this.contact._id,
+    manager: this.contact.manager,
+    status: this.contact.status,
+    priority: this.contact.priority,
+    opened: true
+  }
+  return this.setting(this.formSetting)
+}
 
 
   managerChange(e: any) {
@@ -62,7 +75,8 @@ export class FormSettingComponent implements OnInit {
         _id: this.contact._id,
         manager: e.target.value,
         status: this.contact.status,
-        priority: this.contact.priority
+        priority: this.contact.priority,
+        opened: this.contact.opened
       }
       return this.setting(this.formSetting)
       }
@@ -74,7 +88,8 @@ export class FormSettingComponent implements OnInit {
         _id: this.contact._id,
         manager: this.contact.manager,
         status: e.target.value,
-        priority: this.contact.priority
+        priority: this.contact.priority,
+        opened: this.contact.opened
       }
       return this.setting(this.formSetting)
     }
@@ -86,7 +101,8 @@ export class FormSettingComponent implements OnInit {
         _id: this.contact._id,
         manager: this.contact.manager,
         status: this.contact.status,
-        priority: e.target.value
+        priority: e.target.value,
+        opened: this.contact.opened
       }
       return this.setting(this.formSetting)
     }

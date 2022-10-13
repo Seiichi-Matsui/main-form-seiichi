@@ -2,3 +2,17 @@
     height: 50px;
     overflow: hidden;
 }
+
+.bgColor {
+    background-color: #FFFF88;
+}
+
+.list-bg {
+    background-color: #EEEEEE;
+}
+
+.listSpace {
+    padding-top: 6px;
+    text-align: center;
+}
+

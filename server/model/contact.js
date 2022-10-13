@@ -20,6 +20,7 @@ const ContactSchema = new Schema({
     manager: String,
     contactForm: String,
     date: String,
+    opened: Boolean
 })
 
 module.exports = mongoose.model('Contact', ContactSchema)

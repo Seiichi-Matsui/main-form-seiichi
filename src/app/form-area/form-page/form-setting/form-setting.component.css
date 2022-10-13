@@ -1,3 +1,12 @@
-label {
-    font-size: 1.2rem;
+
+
+.bgColor {
+    height: 100vh;
+    background-color: #DDDDDD;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.bg {
+    background-color: #EEEEEE;
 }
