@@ -18,5 +18,7 @@ export class NavbarComponent implements OnInit {
     this.username = JSON.parse(this.meta).username
   }
 
-
+  logout() {
+    this.auth.logout()
+  }
 }

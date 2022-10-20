@@ -124,5 +124,65 @@ router.patch('/update', function(req, res) {
     })
 })
 
+router.patch('/accountUpdate', function(req, res) {
+    const { _id, username, email, authority, password } = req.body
+
+    User.findById(_id, function(err, foundUser) {
+        if(err) {
+            return res.status(422).send({errors: [{title: 'Id error', detail: "IDが見つかりません "}]})
+        }
+
+    if(username) {
+        foundUser.username = username
+    }
+    if(email) {
+        foundUser.email = email
+    }
+    if(authority) {
+        foundUser.authority = authority
+    }
+    if(password) {
+        foundUser.password = password
+    }
+
+    const user = new User(foundUser)
+
+        user.save(function(err) {
+            if(err) {
+                return res.status(422).send({errors: [{title: 'User error', detail: "エラーが発生しました。お手数ですが再度ご入力をお願いします。"}]})
+            }
+            return res.json(user)
+        })
+    })
+})
+
+router.post('/checkPassword', function(req, res) {
+    const { _id, password } = req.body
+
+    if(!password) {
+        return res.status(422).send({errors: [{title: 'User error', detail: 'please fill password!'}]})
+    }
+
+    User.findById(_id, function(err, foundUser) {
+        if(err) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'Someting went wrong!'}]})
+        }
+        if(!foundUser) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'User is not exist!'}]})
+        }
+        if(!foundUser.hasSamePassword(password)) {
+            return res.status(422).send({errors: [{title: 'User error', detail: 'Incorrect password!'}]})
+        }
+        const token = jwt.sign({
+            userId: foundUser.id,
+            username: foundUser.username,
+            authority: foundUser.authority
+          }, config.SECRET, { expiresIn: '1h' });
+
+        return res.json(token)
+    })
+
+})
+
 
 module.exports = router

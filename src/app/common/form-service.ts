@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class CntactService {
+    date:any = ''
 
   constructor(private http: HttpClient) { }
 
@@ -22,5 +23,12 @@ export class CntactService {
             return this.http.patch('/api/v1/contacts/change/', contact)
     }
 
+    account(i:any) {
+      return this.date = i
+    }
+
+    accountChange(account:string): Observable<any>{
+            return this.http.patch('/api/v1/users/accountUpdate', account)
+    }
 
 }

@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-2">
+        <app-pages></app-pages>
+    </div>
+    <div class="col-8 mt-3 bg-light">
+        <h2 class="font-verylarge">変更内容</h2>
+        <hr>
+        <ng-container *ngIf="date.username">
+            <label class="font-large mt-3">ユーザー名</label>
+            <p class="font-midium">{{ date.username }}</p>
+            <hr>
+        </ng-container>
+        <ng-container *ngIf="date.email">
+            <label class="font-large mt-3">メールアドレス</label>
+            <p class="font-midium">{{ date.email }}</p>
+            <hr>
+        </ng-container>
+        <ng-container *ngIf="date.authority">
+            <label class="font-large mt-3">管理権限</label>
+            <p class="font-midium">{{ date.authority }}</p>
+            <hr>
+        </ng-container>
+        <ng-container *ngIf="date.password">
+            <label class="font-large mt-3">パスワード</label>
+            <p class="font-midium">{{ date.password }}</p>
+            <hr>
+        </ng-container>
+        <form #pass="ngForm" (ngSubmit)="accountChange(pass)">
+            <label class="fonr-large mt-3">確認のため、現在のパスワードを入力してください。</label>
+            <div class="input-group form-group-no-border">
+                <input
+                ngModel
+                name="password"
+                type="password"
+                class="form-control mt-2"
+                placeholder="パスワード"
+                minlength="6"
+                required=""
+            />
+            </div>
+            <button class="btn btn-danger btn-block btn-round mt-3 mb-3" type="submit">変更を確定する</button>
+        </form>
+        <button class="btn btn-danger btn-block btn-round mt-3 mb-3 mx-5" [routerLink]="['/account']">内容を修正する</button>
+        
+    </div>
+</div>

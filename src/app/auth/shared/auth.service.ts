@@ -32,7 +32,7 @@ export class AuthService {
 
     getUsers(): Observable<any>{
       return this.http.get('/api/v1/users')
-  }
+    }
 
     isAuthenticated() {
       return moment().isBefore(moment.unix(this.decodedToken.exp))
@@ -59,6 +59,20 @@ export class AuthService {
       localStorage.removeItem('app-meta')
       this.decodedToken = new DecodedToken()
       this.router.navigate([''])
+    }
+
+    checkPassword(user: string) {
+      return this.http.post('/api/v1/users/checkPassword', user).pipe(map(
+        (token: any) => {
+          
+          this.decodedToken= jwt.decodeToken(token)
+          localStorage.setItem('app-auth', token)
+          localStorage.setItem('app-meta', JSON.stringify(this.decodedToken))
+
+          this.router.navigate(['form/situation'])
+          return token
+        }))
+      
     }
 
 

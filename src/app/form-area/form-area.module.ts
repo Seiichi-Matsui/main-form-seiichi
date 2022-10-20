@@ -16,6 +16,8 @@ import { PagesComponent } from './pages/pages.component';
 import { MemberComponent } from './form-page/member/member.component';
 import { CntactService } from '../common/form-service';
 import { BrowserModule } from '@angular/platform-browser';
+import { AccountComponent } from './form-page/account/account.component';
+import { AccountAuthComponent } from './form-page/account/account-auth/account-auth.component';
 
 
 const routes: Routes = [
@@ -25,7 +27,9 @@ const routes: Routes = [
       { path: ':contactId', component: FormPageComponent},
     ],
   },
-  { path: 'member', component: MemberComponent }
+  { path: 'member', component: MemberComponent },
+  { path: 'account', component: AccountComponent },
+  { path: 'auth', component: AccountAuthComponent },
 ];
 
 @NgModule({
@@ -41,7 +45,9 @@ const routes: Routes = [
     FormComponent,
     FormListComponent,
     PagesComponent,
-    MemberComponent
+    MemberComponent,
+    AccountComponent,
+    AccountAuthComponent
   ],
   imports: [
     CommonModule,

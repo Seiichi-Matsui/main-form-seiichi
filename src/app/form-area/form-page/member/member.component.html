@@ -2,7 +2,7 @@
     <div class="col-2">
         <app-pages></app-pages>
     </div>
-    <div class="col-8 mt-3">
+    <div class="col-8 mt-3 bg-light">
         <label class="col-5 font-large">メンバー名</label>
         <label class="col-2 font-large">区分</label>
         <label class="col-2 font-large">担当件数</label>
@@ -16,7 +16,7 @@
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="authority">
-                <button type="button" (click)="clear(user._id)" class="col-1">削除</button>
+                <button type="button" (click)="clear(user._id)" class="col-1 btn btn-danger btn-sm">削除</button>
             </ng-container>
             <hr>
         </div>
