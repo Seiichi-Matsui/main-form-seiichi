@@ -72,9 +72,8 @@ export class MemberComponent implements OnInit {
       }
       return result;
     }, []);
+    
   }
-
-  
 
   clear(e: any){
     return this.authService.clear(e).subscribe(
@@ -95,14 +94,5 @@ export class MemberComponent implements OnInit {
         }
     )
   }
-  
-    
-    
-      
-      
-    
-  
 }
   
-    
-

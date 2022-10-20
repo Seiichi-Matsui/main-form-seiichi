@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-2">
+        <app-pages></app-pages>
+    </div>
+    <div class="col-8 mt-3 bg-light">
+        <h2 class="font-verylarge">アカウント内容</h2>
+        <hr>
+        <label class="font-large mt-3">ログインユーザー名</label>
+        <p class="font-midium">{{ user.username }}</p>
+        <hr>
+        <label class="font-large mt-3">管理権限</label>
+        <p class="font-midium">{{ user.authority }}</p>
+        <hr>
+        <h2 class="font-verylarge mt-5">アカウント編集</h2>
+        <hr>
+        <p class="font-large">変更する項目にチェックをつけてください。</p>
+        <form #account="ngForm" (ngSubmit)="accountChange(account)">
+            <label class="col">
+                <input ngModel type="checkbox" name="usernameChack" value="ユーザー名">
+            </label>
+            <label class="fonr-large">ユーザー名編集</label>
+            <input
+            ngModel
+            autocomplete="off"
+            name="username"
+            type="text"
+            class="form-control mt-2"
+            placeholder="ユーザー名"
+            required=""
+            />
+            <label class="col">
+                <input ngModel type="checkbox" name="mailChack" value="メールアドレス">
+            </label>
+            <label class="fonr-large mt-3">メールアドレス変更</label>
+            <input
+                ngModel
+                name="email"
+                type="email"
+                class="form-control mt-2"
+                placeholder="Eメール"
+                required=""
+                pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+            />
+            <label class="col mt-3">
+                <input ngModel type="checkbox" name="authorityChack" value="管理権限">
+            </label>
+            <label class="fonr-large">管理権限変更</label>
+            <div class="row mt-1">
+                <label class="col">
+                    <input ngModel type="radio" name="authority" value="一般">
+                    一般
+                </label>
+            </div>
+            <div class="row">
+                <label class="col">
+                    <input ngModel type="radio" name="authority" value="管理者">
+                    管理者
+                </label>
+            </div>
+            <label class="col mt-3">
+                <input ngModel type="checkbox" name="passwordChack" value="パスワード">
+            </label>
+            <label class="fonr-large">パスワード変更</label><br>
+            <label class="fonr-large mt-3">変更後のパスワード</label>
+            <div class="input-group form-group-no-border">
+                <input
+                ngModel
+                name="password"
+                type="password"
+                class="form-control mt-2"
+                placeholder="パスワード"
+                minlength="6"
+                required=""
+            />
+            </div>
+            
+            <label class="mt-2">変更後のパスワード（確認）</label>
+            <div class="input-group form-group-no-border">
+                <input
+                    ngModel
+                    name="confirmPassword"
+                    type="password"
+                    class="form-control mt-2"
+                    placeholder="パスワード（確認）"
+                    minlength="6"
+                    required=""
+                />
+            </div>
+            <button class="btn btn-danger btn-block btn-round mt-3 mb-3" type="submit">変更する</button>
+        </form>
+    </div>
+</div>

@@ -8,8 +8,8 @@
                     {{ username }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="nav-link dropdown-item" style="color: black;" href="#">アカウント管理</a></li>
-                        <li><a class="nav-link dropdown-item" style="color: black;" href="#">ログアウト</a></li>
+                        <li><a class="nav-link dropdown-item" style="color: black;" [routerLink]="['/account']">アカウント管理</a></li>
+                        <li><a class="nav-link dropdown-item" style="color: black;" (click)="logout()">ログアウト</a></li>
                     </ul>
                 </li>
             </ng-container>
